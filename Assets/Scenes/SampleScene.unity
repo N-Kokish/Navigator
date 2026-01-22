@@ -119,6 +119,67 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &637619497
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 637619499}
+  - component: {fileID: 637619498}
+  - component: {fileID: 637619500}
+  m_Layer: 0
+  m_Name: SystemManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &637619498
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637619497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28afa86023e3ac44c9bb0d3c9eac37bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GPS
+--- !u!4 &637619499
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637619497}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 523.9644, y: 0, z: 3387.9517}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &637619500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637619497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1678bc8b046101b4984ac1fbde6e828f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DebugText
+  m_StatusText: {fileID: 1383596516918366218}
+  m_LatText: {fileID: 1008095130791927761}
+  m_LonText: {fileID: 8990811787820303161}
+  m_AccText: {fileID: 209496635641183588}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,7 +988,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 112.79, y: -96.356}
+  m_AnchoredPosition: {x: 112.8, y: -74.288}
   m_SizeDelta: {x: 225.5751, y: 83.6438}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1346170265207835856
@@ -1111,7 +1172,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 338.37, y: -12.712}
+  m_AnchoredPosition: {x: 370.21, y: 93}
   m_SizeDelta: {x: 225.5751, y: 83.6438}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2427789782718000081
@@ -1403,7 +1464,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 112.79, y: 82}
+  m_AnchoredPosition: {x: 112.79, y: 110}
   m_SizeDelta: {x: 225.5751, y: 83.6438}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &4068472853041921953
@@ -1422,7 +1483,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 338.3701, y: -96.35605}
+  m_AnchoredPosition: {x: 356, y: -41.822}
   m_SizeDelta: {x: 225.5751, y: 83.6438}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &4156053582373320176
@@ -1907,7 +1968,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 338.37, y: 82}
+  m_AnchoredPosition: {x: 370.21, y: 158.18}
   m_SizeDelta: {x: 225.5751, y: 83.6438}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5620024563250738117
@@ -2085,7 +2146,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 112.79, y: 0.000015258789}
+  m_AnchoredPosition: {x: 112.79, y: 9.3562}
   m_SizeDelta: {x: 225.5751, y: 83.6438}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6575115490887460390
@@ -2898,3 +2959,4 @@ SceneRoots:
   - {fileID: 9033407853181266898}
   - {fileID: 2267030290675925974}
   - {fileID: 5031317274000390161}
+  - {fileID: 637619499}

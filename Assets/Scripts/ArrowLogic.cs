@@ -1,11 +1,15 @@
 using UnityEngine;
 using System;
-
+using TMPro;
+using System.Globalization;
 public class ArrowLogic : MonoBehaviour
 {
     [Header("Target Settings")]
     [SerializeField] private double m_TargetLat = 48.51625;
     [SerializeField] private double m_TargetLon = 32.25832;
+    [Header("UI Input Fields")]
+    [SerializeField] private TMP_InputField m_LatInput;
+    [SerializeField] private TMP_InputField m_LonInput;
     [Header("Visuals")]
     [SerializeField] private Transform m_ArrowObject;
     [SerializeField] private float m_RotationSpeed = 2f;
@@ -20,6 +24,19 @@ public class ArrowLogic : MonoBehaviour
         get { return m_BearingToTarget; }
     }
 
+    void Start()
+    {
+        if (m_LatInput != null)
+        {
+            m_LatInput.text = m_TargetLat.ToString(CultureInfo.InvariantCulture);
+            m_LatInput.onValueChanged.AddListener(delegate { UpdateCoordinates(); });
+        }
+        if (m_LonInput != null)
+        {
+            m_LonInput.text = m_TargetLon.ToString(CultureInfo.InvariantCulture);
+            m_LonInput.onValueChanged.AddListener(delegate { UpdateCoordinates(); });
+        }
+    }
     void Update()
     {
         double currentLat = GPS.Latitude;
@@ -72,5 +89,24 @@ public class ArrowLogic : MonoBehaviour
     private double ToDeg(double rad)
     {
         return rad * (180 / Math.PI);
+    }
+    public void UpdateCoordinates()
+    {
+        if (m_LatInput != null && !string.IsNullOrEmpty(m_LatInput.text))
+        {
+            string latText = m_LatInput.text.Replace(",", ".");
+            if (double.TryParse(latText, NumberStyles.Any, CultureInfo.InvariantCulture, out double resultLat))
+            {
+                m_TargetLat = resultLat;
+            }
+        }
+        if (m_LonInput != null && !string.IsNullOrEmpty(m_LonInput.text))
+        {
+            string lonText = m_LonInput.text.Replace(",", ".");
+            if (double.TryParse(lonText, NumberStyles.Any, CultureInfo.InvariantCulture, out double resultLon))
+            {
+                m_TargetLon = resultLon;
+            }
+        }
     }
 }

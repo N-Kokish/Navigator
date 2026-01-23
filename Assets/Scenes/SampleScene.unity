@@ -214,6 +214,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ArrowLogic
   m_TargetLat: 48.51625
   m_TargetLon: 32.25832
+  m_LatInput: {fileID: 2817710959169016478}
+  m_LonInput: {fileID: 4851758614604841751}
   m_ArrowObject: {fileID: 8129521708680883161}
   m_RotationSpeed: 2
 --- !u!1 &705507993

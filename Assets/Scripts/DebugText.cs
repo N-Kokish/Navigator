@@ -3,13 +3,16 @@ using TMPro;
 
 public class DebugText : MonoBehaviour
 {
+
+    [SerializeField] private ArrowLogic m_ArrowLogic;
     [Header("TMP")]
     [SerializeField] private TMP_Text m_StatusText;
     [SerializeField] private TMP_Text m_LatText;
     [SerializeField] private TMP_Text m_LonText;
     [SerializeField] private TMP_Text m_AccText;
     [SerializeField] private TMP_Text m_CompassText;
-
+    [SerializeField] private TMP_Text m_DistanceText;
+    [SerializeField] private TMP_Text m_TargetAngleText;
     void Update()
     {
         m_StatusText.text = GPS.StatusMessage;
@@ -36,6 +39,24 @@ public class DebugText : MonoBehaviour
             float az = Compass.Azimuth;
             string dir = GetDirectionName(az);
             m_CompassText.text = $"{dir} : {az:F0}";
+        }
+        if (m_ArrowLogic != null)
+        {
+            double dist = m_ArrowLogic.DistanceToTarget;
+            string distStr;
+            if (dist > 1000)
+            {
+                distStr = $"{(dist / 1000):F1} km";
+            }
+            else
+            {
+                distStr = $"{dist:F0} m";
+            }
+            if (m_DistanceText != null)
+                m_DistanceText.text = $"Dist: {distStr}";
+
+            if (m_TargetAngleText != null)
+                m_TargetAngleText.text = $"Target: {m_ArrowLogic.BearingToTarget:F0}°";
         }
     }
     private string GetDirectionName(float angle)

@@ -8,6 +8,7 @@ public class DebugText : MonoBehaviour
     [SerializeField] private TMP_Text m_LatText;
     [SerializeField] private TMP_Text m_LonText;
     [SerializeField] private TMP_Text m_AccText;
+    [SerializeField] private TMP_Text m_CompassText;
 
     void Update()
     {
@@ -30,5 +31,23 @@ public class DebugText : MonoBehaviour
         {
             m_StatusText.color = Color.red;
         }
+        if (m_CompassText != null)
+        {
+            float az = Compass.Azimuth;
+            string dir = GetDirectionName(az);
+            m_CompassText.text = $"{dir} : {az:F0}";
+        }
+    }
+    private string GetDirectionName(float angle)
+    {
+        if (angle > 337.5f || angle <= 22.5f) return "N";
+        if (angle > 22.5f && angle <= 67.5f) return "NE";
+        if (angle > 67.5f && angle <= 112.5f) return "E";
+        if (angle > 112.5f && angle <= 157.5f) return "SE";
+        if (angle > 157.5f && angle <= 202.5f) return "S";
+        if (angle > 202.5f && angle <= 247.5f) return "SW";
+        if (angle > 247.5f && angle <= 292.5f) return "W";
+        if (angle > 292.5f && angle <= 337.5f) return "NW";
+        return "-";
     }
 }

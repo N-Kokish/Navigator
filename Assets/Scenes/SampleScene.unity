@@ -129,6 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 637619499}
   - component: {fileID: 637619498}
+  - component: {fileID: 637619501}
   - component: {fileID: 637619500}
   m_Layer: 0
   m_Name: SystemManager
@@ -180,6 +181,21 @@ MonoBehaviour:
   m_LatText: {fileID: 1008095130791927761}
   m_LonText: {fileID: 8990811787820303161}
   m_AccText: {fileID: 209496635641183588}
+  m_CompassText: {fileID: 309266648364093823}
+--- !u!114 &637619501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637619497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dae145b60c68aa4c9d8228f4463d9d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Compass
+  m_Smoothing: 5
+  m_HeadingOffset: 180
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -3356,7 +3372,7 @@ SceneRoots:
   - {fileID: 1969933866}
   - {fileID: 183836067680816995}
   - {fileID: 9033407853181266898}
+  - {fileID: 8129521708680883161}
   - {fileID: 2267030290675925974}
   - {fileID: 5031317274000390161}
   - {fileID: 637619499}
-  - {fileID: 8129521708680883161}

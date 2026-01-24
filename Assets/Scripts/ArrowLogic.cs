@@ -2,6 +2,8 @@ using UnityEngine;
 using System;
 using TMPro;
 using System.Globalization;
+using System.Collections;
+
 public class ArrowLogic : MonoBehaviour
 {
     [Header("Target Settings")]
@@ -13,8 +15,10 @@ public class ArrowLogic : MonoBehaviour
     [Header("Visuals")]
     [SerializeField] private Transform m_ArrowObject;
     [SerializeField] private float m_RotationSpeed = 2f;
+    private Coroutine m_SearchCoroutine;
     private double m_DistanceToTarget;
     private float m_BearingToTarget;
+    private double m_StartDistance;
     public double DistanceToTarget
     {
         get { return m_DistanceToTarget; }
@@ -23,9 +27,25 @@ public class ArrowLogic : MonoBehaviour
     {
         get { return m_BearingToTarget; }
     }
+    public double StartDistance
+    {
+        get { return m_StartDistance; }
+    }
 
     void Start()
     {
+        // Для ArrowColor
+        if (GPS.IsSignalGood)
+        {
+            m_StartDistance = CalculateDistance(GPS.Latitude, GPS.Longitude, m_TargetLat, m_TargetLon);
+            if (m_StartDistance < 1) m_StartDistance = 1;
+        }
+        else
+        {
+            m_StartDistance = 0.1f; // Щоб стрілка була червоною якщо сигнал поганий
+            m_SearchCoroutine = StartCoroutine(WaitForGoodSignal());
+        }
+        // Для логіки
         if (m_LatInput != null)
         {
             m_LatInput.text = m_TargetLat.ToString(CultureInfo.InvariantCulture);
@@ -37,6 +57,7 @@ public class ArrowLogic : MonoBehaviour
             m_LonInput.onValueChanged.AddListener(delegate { UpdateCoordinates(); });
         }
     }
+
     void Update()
     {
         double currentLat = GPS.Latitude;
@@ -52,6 +73,16 @@ public class ArrowLogic : MonoBehaviour
             Quaternion targetRotation = Quaternion.Euler(0, finalAngle, 0);
             m_ArrowObject.localRotation = Quaternion.Slerp(m_ArrowObject.localRotation, targetRotation, Time.deltaTime * m_RotationSpeed);
         }
+    }
+    // Очікування гарного сигналу для заданя початкової відстані
+    IEnumerator WaitForGoodSignal()
+    {
+        while (!GPS.IsSignalGood)
+        {
+            yield return new WaitForSeconds(1f);
+        }
+        m_StartDistance = CalculateDistance(GPS.Latitude, GPS.Longitude, m_TargetLat, m_TargetLon);
+        if (m_StartDistance < 1) m_StartDistance = 1;
     }
     // Визначення кута до цілі
     private double CalculateBearing(double lat1, double lon1, double lat2, double lon2)
@@ -92,12 +123,14 @@ public class ArrowLogic : MonoBehaviour
     }
     public void UpdateCoordinates()
     {
+        bool changed = false;
         if (m_LatInput != null && !string.IsNullOrEmpty(m_LatInput.text))
         {
             string latText = m_LatInput.text.Replace(",", ".");
             if (double.TryParse(latText, NumberStyles.Any, CultureInfo.InvariantCulture, out double resultLat))
             {
                 m_TargetLat = resultLat;
+                changed = true;
             }
         }
         if (m_LonInput != null && !string.IsNullOrEmpty(m_LonInput.text))
@@ -106,7 +139,15 @@ public class ArrowLogic : MonoBehaviour
             if (double.TryParse(lonText, NumberStyles.Any, CultureInfo.InvariantCulture, out double resultLon))
             {
                 m_TargetLon = resultLon;
+                changed = true;
             }
+        }
+        // Для ArrowColor
+        if (changed)
+        {
+            if (m_SearchCoroutine != null) StopCoroutine(m_SearchCoroutine);
+            m_StartDistance = CalculateDistance(GPS.Latitude, GPS.Longitude, m_TargetLat, m_TargetLon);
+            if (m_StartDistance < 1) m_StartDistance = 1;
         }
     }
 }

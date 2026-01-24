@@ -54,9 +54,8 @@ public class DebugText : MonoBehaviour
             }
             if (m_DistanceText != null)
                 m_DistanceText.text = $"Dist: {distStr}";
-
             if (m_TargetAngleText != null)
-                m_TargetAngleText.text = $"Target: {m_ArrowLogic.BearingToTarget:F0}°";
+                m_TargetAngleText.text = $"Target: {m_ArrowLogic.BearingToTarget:F0}";
         }
     }
     private string GetDirectionName(float angle)

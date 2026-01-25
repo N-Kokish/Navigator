@@ -19,6 +19,7 @@ public class ArrowLogic : MonoBehaviour
     private double m_DistanceToTarget;
     private float m_BearingToTarget;
     private double m_StartDistance;
+    private double m_LastLat, m_LastLon;
     public double DistanceToTarget
     {
         get { return m_DistanceToTarget; }
@@ -64,8 +65,14 @@ public class ArrowLogic : MonoBehaviour
         double currentLon = GPS.Longitude;
         float phoneAzimuth = Compass.Azimuth;
         if (currentLat == 0 && currentLon == 0) return;
-        m_BearingToTarget = (float)CalculateBearing(currentLat, currentLon, m_TargetLat, m_TargetLon);
-        m_DistanceToTarget = CalculateDistance(currentLat, currentLon, m_TargetLat, m_TargetLon);
+        //Перевірка чи змінились координати
+        if (currentLat != m_LastLat || currentLon != m_LastLon)
+        {
+            m_BearingToTarget = (float)CalculateBearing(currentLat, currentLon, m_TargetLat, m_TargetLon);
+            m_DistanceToTarget = CalculateDistance(currentLat, currentLon, m_TargetLat, m_TargetLon);
+            m_LastLat = currentLat;
+            m_LastLon = currentLon;
+        }
         float finalAngle = m_BearingToTarget - phoneAzimuth;
         //Поворот стрілки
         if (m_ArrowObject != null)
@@ -146,6 +153,7 @@ public class ArrowLogic : MonoBehaviour
         if (changed)
         {
             if (m_SearchCoroutine != null) StopCoroutine(m_SearchCoroutine);
+            m_LastLat = -1;
             m_StartDistance = CalculateDistance(GPS.Latitude, GPS.Longitude, m_TargetLat, m_TargetLon);
             if (m_StartDistance < 1) m_StartDistance = 1;
         }

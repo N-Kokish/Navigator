@@ -56,11 +56,11 @@ public class PhoneCamera : MonoBehaviour
         // налаштування
         if (string.IsNullOrEmpty(backCamName))
         {
-            m_Cam = new WebCamTexture(3264, 2448, 60);
+            m_Cam = new WebCamTexture(3264, 2448, 30);
         }
         else
         {
-            m_Cam = new WebCamTexture(backCamName, 3264, 2448, 60);
+            m_Cam = new WebCamTexture(backCamName, 3264, 2448, 30);
         }
         m_BackImage.texture = m_Cam;
         m_Cam.Play();

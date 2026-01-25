@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class Compass : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField] private float m_Smoothing = 5f;
+    [SerializeField] private float m_Smoothing = 4f;
     [SerializeField] private float m_HeadingOffset = 180f;
     private float m_CurrentHeading;
     private static float m_Azimuth;

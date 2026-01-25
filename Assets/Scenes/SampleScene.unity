@@ -310,7 +310,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &782628376
 RectTransform:
   m_ObjectHideFlags: 0
@@ -685,9 +685,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9be7676d84c93dc42a9953b54a7079f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FinishText
-  arrowLogicScript: {fileID: 637619502}
-  showDistance: 100
-  hideDistance: 200
+  m_ArrowLogic: {fileID: 0}
+  m_ShowDistance: 100
+  m_HideDistance: 200
 --- !u!1 &1772975392
 GameObject:
   m_ObjectHideFlags: 0

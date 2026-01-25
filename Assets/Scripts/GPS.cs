@@ -11,7 +11,7 @@ public class GPS : MonoBehaviour
     private static string m_StatusMessage;
     // Налаштування точності
     const float TARGET_ACCURACY = 15f;
-    const float UPDATE_DISTANCE = 0.1f;
+    const float UPDATE_DISTANCE = 1f;
     public static float Latitude
     {
         get { return m_Latitude; }
@@ -35,6 +35,7 @@ public class GPS : MonoBehaviour
 
     void Start()
     {
+        Application.targetFrameRate = 30;
         Screen.sleepTimeout = SleepTimeout.NeverSleep;
         StartCoroutine(StartLocationService());
     }

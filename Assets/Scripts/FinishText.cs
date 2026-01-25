@@ -4,15 +4,12 @@ using TMPro;
 public class FinishText : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private ArrowLogic arrowLogicScript;
-
+    [SerializeField] private ArrowLogic m_ArrowLogic;
     [Header("Settings")]
-    [SerializeField] private float showDistance = 100f; // Коли показувати
-    [SerializeField] private float hideDistance = 200f; // Коли ховати
-
+    [SerializeField] private float m_ShowDistance = 100f;//відстань до якої появиться текст
+    [SerializeField] private float m_HideDistance = 200f;//відстань після якої зникне текст
     private TextMeshPro m_Text;
     private bool m_IsVisible = false;
-
     void Start()
     {
         m_Text = GetComponent<TextMeshPro>();
@@ -21,34 +18,25 @@ public class FinishText : MonoBehaviour
 
     void Update()
     {
-        if (arrowLogicScript == null) return;
-
-        // Беремо дистанцію
-        float distance = (float)arrowLogicScript.DistanceToTarget;
-
-        // 1. Логіка появи/зникнення
+        if (m_ArrowLogic == null) return;
+        float distance = (float)m_ArrowLogic.DistanceToTarget;
         if (!m_IsVisible)
         {
-            if (distance < showDistance && GPS.IsSignalGood)
+            if (distance < m_ShowDistance && GPS.IsSignalGood)
             {
                 ToggleVisibility(true);
             }
         }
         else
         {
-            if (distance > hideDistance)
+            if (distance > m_HideDistance)
             {
                 ToggleVisibility(false);
             }
         }
-
         if (!m_IsVisible) return;
-
-        // 2. Оновлення цифр
         m_Text.text = distance.ToString("F0") + " m";
-
-        // 3. Зміна кольору (Зелений -> Червоний)
-        float factor = Mathf.Clamp01(distance / showDistance);
+        float factor = Mathf.Clamp01(distance / m_ShowDistance);
         m_Text.color = Color.Lerp(Color.green, Color.red, factor);
     }
 

@@ -13,8 +13,12 @@ public class DebugText : MonoBehaviour
     [SerializeField] private TMP_Text m_CompassText;
     [SerializeField] private TMP_Text m_DistanceText;
     [SerializeField] private TMP_Text m_TargetAngleText;
+    private float m_Timer; // для оптимізації
     void Update()
     {
+        m_Timer += Time.deltaTime;
+        if (m_Timer < 0.5f) return;
+        m_Timer = 0f;
         m_StatusText.text = GPS.StatusMessage;
         m_LatText.text = $"Lat: {GPS.Latitude:F6}";
         m_LonText.text = $"Lon: {GPS.Longitude:F6}";

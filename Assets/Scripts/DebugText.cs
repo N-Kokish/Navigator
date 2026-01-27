@@ -14,6 +14,7 @@ public class DebugText : MonoBehaviour
     [SerializeField] private TMP_Text m_DistanceText;
     [SerializeField] private TMP_Text m_TargetAngleText;
     private float m_Timer; // для оптимізації
+
     void Update()
     {
         m_Timer += Time.deltaTime;
@@ -62,6 +63,7 @@ public class DebugText : MonoBehaviour
                 m_TargetAngleText.text = $"Target: {m_ArrowLogic.BearingToTarget:F0}";
         }
     }
+
     private string GetDirectionName(float angle)
     {
         if (angle > 337.5f || angle <= 22.5f) return "N";

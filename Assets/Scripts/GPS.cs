@@ -12,6 +12,7 @@ public class GPS : MonoBehaviour
     // Налаштування точності
     const float TARGET_ACCURACY = 15f;
     const float UPDATE_DISTANCE = 1f;
+
     public static float Latitude
     {
         get { return m_Latitude; }

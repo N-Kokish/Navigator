@@ -97,4 +97,12 @@ public class PhoneCamera : MonoBehaviour
         m_BackImage.rectTransform.localScale = new Vector3(1f, scaleY, 1f);
         Debug.Log("Camera initialized: " + m_Cam.width + "x" + m_Cam.height);
     }
+
+    void OnDestroy()
+    {
+        if (m_Cam != null && m_Cam.isPlaying)
+        {
+            m_Cam.Stop();
+        }
+    }
 }
